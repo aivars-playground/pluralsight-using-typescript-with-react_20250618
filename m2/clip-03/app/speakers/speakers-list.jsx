@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useContext, useRef } from "react";
 import { SpeakersDataContext } from "@/app/speakers/speakers-data-context";
 import { SpeakerMenuContext } from "@/app/speakers/speaker-menu-context";
