@@ -8,7 +8,7 @@ import { useTheme } from "@/app/theme-context";
 import {Speaker} from "@/app/types/Speaker";
 
 export default function SpeakersList() {
-  const { speakerList } = useContext(SpeakersDataContext);
+  const { speakerList } = useContext(SpeakersDataContext) as {speakerList: Speaker[]}
   const { darkTheme } = useTheme();
   const { speakingSaturday, speakingSunday, searchText } =
     useContext(SpeakerMenuContext);
