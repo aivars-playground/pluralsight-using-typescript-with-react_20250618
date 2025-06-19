@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 type ThemeContextProps = {
-  darkTheme: boolean | undefined
+  darkTheme: boolean
   toggleTheme: () => void
 }
 
@@ -16,7 +16,7 @@ type ThemeProviderProps = {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [darkTheme, setDarkTheme] = useState<boolean | undefined>(false);
+  const [darkTheme, setDarkTheme] = useState<boolean>(false);
   const toggleTheme = () => setDarkTheme(!darkTheme);
   const value = { darkTheme, toggleTheme };
   return (
