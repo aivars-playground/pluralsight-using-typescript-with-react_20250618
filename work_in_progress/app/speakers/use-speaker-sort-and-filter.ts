@@ -1,8 +1,8 @@
-type Speaker = {
-    sat: boolean,
-    sun: boolean,
-    firstName: string,
-    lastName: string,
+interface Speaker {
+    sat: boolean
+    sun: boolean
+    firstName: string
+    lastName: string
 }
 
 export default function useSpeakerSortAndFilter(
