@@ -1,7 +1,16 @@
 "use client";
 import React, { createContext, useState } from "react";
 
-export const SpeakerMenuContext = createContext({
+type SpeakerMenuContextProps = {
+  speakingSaturday: boolean
+  setSpeakingSaturday: React.Dispatch<React.SetStateAction<boolean>>
+  speakingSunday: boolean
+  setSpeakingSunday: React.Dispatch<React.SetStateAction<boolean>>
+  searchText: string
+  setSearchText: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const SpeakerMenuContext = createContext<SpeakerMenuContextProps>({
   speakingSaturday: true,
   setSpeakingSaturday: () => {},
   speakingSunday: true,
@@ -9,7 +18,13 @@ export const SpeakerMenuContext = createContext({
   searchText: "",
   setSearchText: () => {},
 });
-export const SpeakerMenuProvider = ({ children }) => {
+
+
+type SpeakerMenuProviderProps = {
+  children: React.ReactNode
+}
+
+export const SpeakerMenuProvider = ({ children }: SpeakerMenuProviderProps) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
   const [searchText, setSearchText] = useState("");

@@ -1,9 +1,10 @@
 // app/lib/speakers-cache.ts
 import NodeCache from "node-cache";
 import { speakersList } from "@/app/data/speakers-data";
+import {Speaker} from "@/app/types/Speaker";
 // Create a singleton cache instance that persists across requests
 // This ensures the cache is only initialized once when the server starts
-let cacheInstance = null;
+let cacheInstance: NodeCache | null = null;
 function getCache() {
   if (!cacheInstance) {
     cacheInstance = new NodeCache({ stdTTL: 0 }); // 0 means no expiration
@@ -24,10 +25,10 @@ export async function getSpeakersFromCache() {
   }
   return data;
 }
-export async function updateSpeakerInCache(updatedSpeaker) {
+export async function updateSpeakerInCache(updatedSpeaker: Speaker) {
   const cache = getCache();
   // Get current speakers data from cache
-  let speakers = cache.get("speakersData");
+  let speakers = cache.get("speakersData") as Speaker[];
   if (!speakers) {
     // Initialize cache if empty
     speakers = speakersList;
