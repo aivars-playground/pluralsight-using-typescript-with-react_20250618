@@ -5,6 +5,7 @@ import { SpeakerMenuContext } from "@/app/speakers/speaker-menu-context";
 import useSpeakerSortAndFilter from "@/app/speakers/use-speaker-sort-and-filter";
 import SpeakerDetail from "@/app/speakers/speaker-detail";
 import { useTheme } from "@/app/theme-context";
+import {Speaker} from "@/app/types/Speaker";
 
 export default function SpeakersList() {
   const { speakerList } = useContext(SpeakersDataContext);
@@ -19,10 +20,11 @@ export default function SpeakersList() {
   );
 
   // Create a ref map to store references for each speaker
-  const speakerRefs = useRef({});
+  type SpeakerRefsType = Record<number, HTMLDivElement | null>
+  const speakerRefs = useRef<SpeakerRefsType>({});
 
   // Function to handle speaker click and scroll
-  const handleSpeakerClick = (speakerId) => {
+  const handleSpeakerClick = (speakerId: number) => {
     if (speakerRefs.current[speakerId]) {
       speakerRefs.current[speakerId].scrollIntoView({
         behavior: "smooth",
@@ -36,7 +38,7 @@ export default function SpeakersList() {
       <div className="container">
         <div className="row justify-content-center">
           <div>
-            {speakerListFiltered.map((speakerRec) => {
+            {speakerListFiltered.map((speakerRec: Speaker) => {
               return (
                 <div
                   key={speakerRec.id}
