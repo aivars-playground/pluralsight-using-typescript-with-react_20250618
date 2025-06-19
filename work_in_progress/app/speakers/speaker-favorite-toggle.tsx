@@ -1,6 +1,7 @@
 "use client";
 import { useReducer, useTransition } from "react";
 import { speakerFavoriteToggleAction } from "@/app/speakers/speaker-favorite-toggle-action";
+import {Speaker} from "@/app/types/Speaker";
 
 function speakerReducer(state, action) {
   switch (action.type) {
@@ -30,7 +31,11 @@ function speakerReducer(state, action) {
   }
 }
 
-export default function SpeakerFavoriteToggle({ speakerRec }) {
+type SpeakerFavoriteToggleProps = {
+  speakerRec: Speaker
+}
+
+export default function SpeakerFavoriteToggle({ speakerRec }: SpeakerFavoriteToggleProps) {
   const initialState = { speaker: speakerRec, error: null };
   const [state, dispatch] = useReducer(speakerReducer, initialState);
   const [isPending, startTransition] = useTransition();
