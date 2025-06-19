@@ -11,9 +11,9 @@ import {speakerSchema, Speaker} from "@/app/types/Speaker";
 export default function SpeakersList() {
   const { speakerList } = useContext(SpeakersDataContext) as {speakerList: Speaker[]}
 
-  let speakersParsed
+  let validatedSpeakers
   try {
-    speakersParsed = speakerSchema.array().parse(speakerList)
+    validatedSpeakers = speakerSchema.array().parse(speakerList)
   } catch (err: unknown) {
     throw new Error("client side error - invalid data " +
         (err instanceof Error ? err.message : "")
@@ -24,7 +24,7 @@ export default function SpeakersList() {
   const { speakingSaturday, speakingSunday, searchText } =
     useContext(SpeakerMenuContext);
   const speakerListFiltered = useSpeakerSortAndFilter(
-    speakersParsed,
+    validatedSpeakers,
     speakingSaturday,
     speakingSunday,
     searchText,

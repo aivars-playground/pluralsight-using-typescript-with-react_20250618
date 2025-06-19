@@ -12,10 +12,12 @@ async function loadSpeakersData() {
 }
 
 export default async function SpeakersPage() {
-  const speakersData = await loadSpeakersData();
-  let speakersParsed
+
+    const speakersData = await loadSpeakersData();
+
+  let validatedSpeakers
   try {
-      speakersParsed = speakerSchema.array().parse(speakersData)
+      validatedSpeakers = speakerSchema.array().parse(speakersData)
   } catch (err: unknown) {
       throw new Error("server side error - invalid data " +
           (err instanceof Error ? err.message : "")
@@ -24,7 +26,7 @@ export default async function SpeakersPage() {
   return (
     <SpeakerMenuProvider>
       <SpeakerMenu />
-      <SpeakersDataProvider initialData={speakersParsed} >
+      <SpeakersDataProvider initialData={validatedSpeakers} >
         <SpeakersList />
       </SpeakersDataProvider>
     </SpeakerMenuProvider>
