@@ -1,4 +1,6 @@
-export const speakersList = [
+import {Speaker} from "@/app/types/Speaker";
+
+export const speakersList: Speaker[] = [
   {
     id: 1269,
     firstName: "Arun",
