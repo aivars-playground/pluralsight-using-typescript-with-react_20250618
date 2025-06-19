@@ -1,10 +1,12 @@
+type Speaker = {
+    sat: boolean,
+    sun: boolean,
+    firstName: string,
+    lastName: string,
+}
+
 export default function useSpeakerSortAndFilter(
-  speakerList: {
-      sat: boolean,
-      sun: boolean,
-      firstName: string,
-      lastName: string,
-  }[],
+  speakerList: Speaker[],
   speakingSaturday: boolean,
   speakingSunday: boolean,
   searchText: string,
