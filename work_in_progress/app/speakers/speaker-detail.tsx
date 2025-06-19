@@ -1,20 +1,12 @@
 import Image from "next/image";
 import SpeakerFavoriteToggle from "@/app/speakers/speaker-favorite-toggle";
+import {Speaker} from "@/app/types/Speaker";
 
-type Speaker = {
-  imageUrl: string
-  firstName: string
-  lastName: string
-  userBioShort: string
-  company: string
-  twitterHandle: string
-}
-
-type SpeakerRecdProps = {
+type SpeakerDetailsProps = {
   speakerRec: Speaker
 }
 
-export default function SpeakerDetail({ speakerRec }: SpeakerRecdProps) {
+export default function SpeakerDetail({ speakerRec }: SpeakerDetailsProps) {
   return (
     <div className="col-xl-6 col-md-12">
       <div className="card border-0">

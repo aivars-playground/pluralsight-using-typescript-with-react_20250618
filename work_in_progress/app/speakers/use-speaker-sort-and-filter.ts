@@ -1,9 +1,4 @@
-interface Speaker {
-    sat: boolean
-    sun: boolean
-    firstName: string
-    lastName: string
-}
+import {Speaker} from "@/app/types/Speaker";
 
 export default function useSpeakerSortAndFilter(
   speakerList: Speaker[],
