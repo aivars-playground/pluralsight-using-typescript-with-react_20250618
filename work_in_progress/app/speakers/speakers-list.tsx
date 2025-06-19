@@ -5,15 +5,26 @@ import { SpeakerMenuContext } from "@/app/speakers/speaker-menu-context";
 import useSpeakerSortAndFilter from "@/app/speakers/use-speaker-sort-and-filter";
 import SpeakerDetail from "@/app/speakers/speaker-detail";
 import { useTheme } from "@/app/theme-context";
-import {Speaker} from "@/app/types/Speaker";
+import {speakerSchema, Speaker} from "@/app/types/Speaker";
+
 
 export default function SpeakersList() {
   const { speakerList } = useContext(SpeakersDataContext) as {speakerList: Speaker[]}
+
+  let speakersParsed
+  try {
+    speakersParsed = speakerSchema.array().parse(speakerList)
+  } catch (err: unknown) {
+    throw new Error("client side error - invalid data " +
+        (err instanceof Error ? err.message : "")
+    )
+  }
+
   const { darkTheme } = useTheme();
   const { speakingSaturday, speakingSunday, searchText } =
     useContext(SpeakerMenuContext);
   const speakerListFiltered = useSpeakerSortAndFilter(
-    speakerList,
+    speakersParsed,
     speakingSaturday,
     speakingSunday,
     searchText,

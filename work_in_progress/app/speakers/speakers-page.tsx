@@ -17,7 +17,7 @@ export default async function SpeakersPage() {
   try {
       speakersParsed = speakerSchema.array().parse(speakersData)
   } catch (err: unknown) {
-      throw new Error("invalid data " +
+      throw new Error("server side error - invalid data " +
           (err instanceof Error ? err.message : "")
       )
   }
