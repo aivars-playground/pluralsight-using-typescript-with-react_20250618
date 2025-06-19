@@ -37,8 +37,6 @@ function speakerReducer(state: State, action: Action) {
         ...state,
         error: null,
       };
-    default:
-      return state;
   }
 }
 
