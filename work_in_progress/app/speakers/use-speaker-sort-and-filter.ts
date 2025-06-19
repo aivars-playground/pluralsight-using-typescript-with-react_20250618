@@ -1,8 +1,13 @@
 export default function useSpeakerSortAndFilter(
-  speakerList,
-  speakingSaturday,
-  speakingSunday,
-  searchText,
+  speakerList: {
+      sat: boolean,
+      sun: boolean,
+      firstName: string,
+      lastName: string,
+  }[],
+  speakingSaturday: boolean,
+  speakingSunday: boolean,
+  searchText: string,
 ) {
   return speakerList
     ? speakerList
