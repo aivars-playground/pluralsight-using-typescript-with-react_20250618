@@ -3,7 +3,18 @@ import { useReducer, useTransition } from "react";
 import { speakerFavoriteToggleAction } from "@/app/speakers/speaker-favorite-toggle-action";
 import {Speaker} from "@/app/types/Speaker";
 
-function speakerReducer(state, action) {
+type State = {
+  speaker: Speaker
+  error: string | null
+}
+
+type Action =
+    | { type: "CLEAR_ERROR" }
+    | { type: "ERROR", payload: string }
+    | { type: "TOGGLE_FAVORITE_OPTIMISTIC", payload: boolean }
+    | { type: "TOGGLE_FAVORITE_REVERT", payload: boolean }
+
+function speakerReducer(state: State, action: Action) {
   switch (action.type) {
     case "TOGGLE_FAVORITE_OPTIMISTIC":
       return {
